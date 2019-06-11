@@ -1,0 +1,16 @@
+snippet function
+abbr    func
+options word
+  function ${1:#:function_name}(${2:#:argument}) {
+    ${0:TARGET}
+  }
+
+snippet effect
+abbr    effect
+options word
+  React.useEffect(() => {${0:TARGET}}, [${1:#:argument}])
+  
+snippet state
+abbr    state
+options word
+  const [${1:#:state}, ${2:#:setState}] = React.useState(${3:#:initialState})
