@@ -60,6 +60,7 @@ Plug 'burner/vim-svelte'
 Plug 'andyl/vim-textobj-elixir'
 Plug 'kana/vim-textobj-user'
 Plug 'mhinz/vim-mix-format'
+Plug 'justinmk/vim-syntax-extra'
 call plug#end()
 
 syntax on
