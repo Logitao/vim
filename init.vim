@@ -48,7 +48,7 @@ Plug 'morhetz/gruvbox'
 Plug 'axvr/photon.vim'
 Plug 'tjammer/blandon.vim'
 "
-Plug 'mattn/emmet-vim'
+" Plug 'mattn/emmet-vim'
 " Plug 'tmhedberg/matchit'
 
 Plug 'jeetsukumaran/vim-buffergator'
@@ -79,7 +79,7 @@ colorscheme one
 " let g:airline_theme='onedark'
 let g:airline_theme='onedark'
 
-let g:user_emmet_mode='n'    "only enable normal mode functions.
+" let g:user_emmet_mode='n'    "only enable normal mode functions.
 
 let mapleader = "\<Space>"
 

@@ -8,9 +8,22 @@ options word
 snippet effect
 abbr    effect
 options word
-  React.useEffect(() => {${0:TARGET}}, [${1:#:argument}])
+  React.useEffect(() => {${0:TARGET}}, [])
   
 snippet state
 abbr    state
 options word
   const [${1:#:state}, ${2:#:setState}] = React.useState(${3:#:initialState})
+
+snippet     component
+abbr        component
+options     head
+  import React from 'react'
+
+  const ${1:#:Component} = () => {
+    return (
+      ${0:TARGET}
+    )
+  }
+
+  export default ${1}
