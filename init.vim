@@ -60,7 +60,10 @@ Plug 'burner/vim-svelte'
 Plug 'andyl/vim-textobj-elixir'
 Plug 'kana/vim-textobj-user'
 Plug 'mhinz/vim-mix-format'
+
+Plug 'zchee/deoplete-clang'
 Plug 'justinmk/vim-syntax-extra'
+Plug 'Shougo/neoinclude.vim'
 call plug#end()
 
 syntax on
@@ -84,9 +87,15 @@ let mapleader = "\<Space>"
 set number
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\deps\|deps\|_build\|build'
 
+let g:deoplete#sources#clang#libclang_path = "/usr/lib/x86_64-linux-gnu/libclang.so"	
+let g:deoplete#sources#clang#clang_header = "/usr/lib/clang/6.0/include"
+
 map <C-n> :NERDTreeToggle<CR>
 map <Leader>c :noh<CR>
 map <Leader>b :set cul!<CR>
+map <Leader>q :q<CR>
+map <Leader>s :vs<CR>
+map <Leader>m :MixFormat<CR>
 " Plugin key-mappings.
 " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
