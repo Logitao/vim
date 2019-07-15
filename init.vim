@@ -61,9 +61,11 @@ Plug 'andyl/vim-textobj-elixir'
 Plug 'kana/vim-textobj-user'
 Plug 'mhinz/vim-mix-format'
 
-Plug 'zchee/deoplete-clang'
+" C (lang)
+" Plug 'zchee/deoplete-clang'
+" Plug 'Shougo/neoinclude.vim'
 Plug 'justinmk/vim-syntax-extra'
-Plug 'Shougo/neoinclude.vim'
+
 call plug#end()
 
 syntax on
@@ -87,8 +89,8 @@ let mapleader = "\<Space>"
 set number
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\deps\|deps\|_build\|build'
 
-let g:deoplete#sources#clang#libclang_path = "/usr/lib/x86_64-linux-gnu/libclang.so"	
-let g:deoplete#sources#clang#clang_header = "/usr/lib/clang/6.0/include"
+" let g:deoplete#sources#clang#libclang_path = "/usr/lib/x86_64-linux-gnu/libclang.so"	
+" let g:deoplete#sources#clang#clang_header = "/usr/lib/clang/6.0/include"
 
 map <C-n> :NERDTreeToggle<CR>
 map <Leader>c :noh<CR>
