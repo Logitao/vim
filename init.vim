@@ -69,10 +69,14 @@ Plug 'justinmk/vim-syntax-extra'
 
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'kristijanhusak/vim-js-file-import', {'do': 'npm install'}
+
+Plug 'Xuyuanp/nerdtree-git-plugin'
+
 call plug#end()
 
 syntax on
 
+set updatetime=50
 set background=dark
 " colorscheme onedark 
 " colorscheme gruvbox 
