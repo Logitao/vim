@@ -56,7 +56,6 @@ Plug 'jeetsukumaran/vim-buffergator'
 
 Plug 'Galooshi/vim-import-js'
 Plug 'burner/vim-svelte'
-
 " ELIXIR
 Plug 'andyl/vim-textobj-elixir'
 Plug 'kana/vim-textobj-user'
@@ -65,7 +64,6 @@ Plug 'mhinz/vim-mix-format'
 " C (lang)
 " Plug 'zchee/deoplete-clang'
 " Plug 'Shougo/neoinclude.vim'
-Plug 'justinmk/vim-syntax-extra'
 
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'kristijanhusak/vim-js-file-import', {'do': 'npm install'}
@@ -77,6 +75,8 @@ call plug#end()
 syntax on
 
 set updatetime=50
+set cursorline!
+set lazyredraw
 set background=dark
 " colorscheme onedark 
 " colorscheme gruvbox 
