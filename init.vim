@@ -51,6 +51,7 @@ Plug 'tjammer/blandon.vim'
 " Plug 'mattn/emmet-vim'
 " Plug 'tmhedberg/matchit'
 
+Plug 'airblade/vim-gitgutter'
 Plug 'jeetsukumaran/vim-buffergator'
 
 Plug 'Galooshi/vim-import-js'
@@ -66,6 +67,8 @@ Plug 'mhinz/vim-mix-format'
 " Plug 'Shougo/neoinclude.vim'
 Plug 'justinmk/vim-syntax-extra'
 
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'kristijanhusak/vim-js-file-import', {'do': 'npm install'}
 call plug#end()
 
 syntax on
