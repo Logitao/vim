@@ -5,16 +5,19 @@
 !_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
 !_TAG_PROGRAM_URL	https://ctags.io/	/official site/
 !_TAG_PROGRAM_VERSION	0.0.0	/b2ed9543/
-<C-k>	init.vim	/^imap <C-k>     <Plug>(neosnippet_expand_or_jump)$/;"	m
-<C-k>	init.vim	/^smap <C-k>     <Plug>(neosnippet_expand_or_jump)$/;"	m
-<C-k>	init.vim	/^xmap <C-k>     <Plug>(neosnippet_expand_target)$/;"	m
+<C-j>	init.vim	/^nnoremap <C-j> :m .+1<CR>==$/;"	m
+<C-k>	init.vim	/^nnoremap <C-k> :m .-2<CR>==$/;"	m
 <C-n>	init.vim	/^map <C-n> :NERDTreeToggle<CR>$/;"	m
+<C-q>	init.vim	/^imap <C-q>     <Plug>(neosnippet_expand_or_jump)$/;"	m
+<C-q>	init.vim	/^smap <C-q>     <Plug>(neosnippet_expand_or_jump)$/;"	m
+<C-q>	init.vim	/^xmap <C-q>     <Plug>(neosnippet_expand_target)$/;"	m
 <Leader>b	init.vim	/^map <Leader>b :set cul!<CR>$/;"	m
 <Leader>c	init.vim	/^map <Leader>c :noh<CR>$/;"	m
 <Leader>m	init.vim	/^map <Leader>m :MixFormat<CR>$/;"	m
 <Leader>q	init.vim	/^map <Leader>q :q<CR>$/;"	m
 <Leader>s	init.vim	/^map <Leader>s :vs<CR>$/;"	m
 <TAB>	init.vim	/^smap <expr><TAB> neosnippet#expandable_or_jumpable() ?$/;"	m
+NERDTreeShowHidden	init.vim	/^let NERDTreeShowHidden=1$/;"	v
 g:airline_theme	init.vim	/^let g:airline_theme='onedark'$/;"	v
 g:ctrlp_custom_ignore	init.vim	/^let g:ctrlp_custom_ignore = 'node_modules\\|DS_Store\\|git\\deps\\|deps\\|_build\\|build'$/;"	v
 g:deoplete#enable_at_startup	init.vim	/^let g:deoplete#enable_at_startup = 1$/;"	v

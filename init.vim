@@ -37,7 +37,6 @@ Plug 'sheerun/vim-polyglot'
 Plug 'SirVer/ultisnips'
 " Snippets are separated from the engine. Add this if you want them:
 Plug 'honza/vim-snippets'
-
 " COLORS
 Plug 'benburrill/potato-colors'
 Plug 'joshdick/onedark.vim'
@@ -78,6 +77,8 @@ set updatetime=50
 set cursorline!
 set lazyredraw
 set background=dark
+set mouse=a
+set regexpengine=1 
 " colorscheme onedark 
 " colorscheme gruvbox 
 " colorscheme potato 
@@ -107,10 +108,9 @@ map <Leader>s :vs<CR>
 map <Leader>m :MixFormat<CR>
 " Plugin key-mappings.
 " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
-
+imap <C-q>     <Plug>(neosnippet_expand_or_jump)
+smap <C-q>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-q>     <Plug>(neosnippet_expand_target)
 " SuperTab like snippets behavior.
 " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
 "imap <expr><TAB>
@@ -120,6 +120,10 @@ xmap <C-k>     <Plug>(neosnippet_expand_target)
 smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
+nnoremap <C-j> :m .+1<CR>==
+nnoremap <C-k> :m .-2<CR>==
+
+let NERDTreeShowHidden=1
 " For conceal markers.
 if has('conceal')
   set conceallevel=2 concealcursor=niv
