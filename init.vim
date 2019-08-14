@@ -1,6 +1,5 @@
-set shell=bash
-
 set termguicolors
+set ttyfast
 set clipboard+=unnamedplus
 call plug#begin('~/.vim/plugged')
 
@@ -68,7 +67,8 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'kristijanhusak/vim-js-file-import', {'do': 'npm install'}
 
 Plug 'Xuyuanp/nerdtree-git-plugin'
-
+Plug 'natebosch/vim-lsc'
+Plug 'othree/javascript-libraries-syntax.vim'
 call plug#end()
 
 syntax on
@@ -96,7 +96,7 @@ let mapleader = "\<Space>"
 
 set number
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\deps\|deps\|_build\|build'
-
+let g:lsc_server_commands = {'dart': 'dart_language_server'}
 " let g:deoplete#sources#clang#libclang_path = "/usr/lib/x86_64-linux-gnu/libclang.so"	
 " let g:deoplete#sources#clang#clang_header = "/usr/lib/clang/6.0/include"
 
@@ -119,7 +119,7 @@ xmap <C-q>     <Plug>(neosnippet_expand_target)
 " \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-
+set shortmess-=F
 nnoremap <C-j> :m .+1<CR>==
 nnoremap <C-k> :m .-2<CR>==
 
