@@ -133,7 +133,15 @@ endif
 
 " Tell Neosnippet about the other snippets
 let g:neosnippet#snippets_directory='~/.config/nvim/snippets'
+nnoremap <silent> <Right> <c-w>l
+nnoremap <silent> <Left> <c-w>h
+nnoremap <silent> <Up> <c-w>k
+nnoremap <silent> <Down> <c-w>j
 
+nnoremap <silent> <A-Right> :vertical resize +5<CR> 
+nnoremap <silent> <A-Left> :vertical resize -5 <CR>
+nnoremap <silent> <A-Up> :res -5<CR>
+nnoremap <silent> <A-Down> :res +5<CR>
 
 " On pressing tab, insert 2 spaces
 set expandtab
