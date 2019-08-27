@@ -143,6 +143,25 @@ nnoremap <silent> <A-Left> :vertical resize -5 <CR>
 nnoremap <silent> <A-Up> :res -5<CR>
 nnoremap <silent> <A-Down> :res +5<CR>
 
+map <Leader>9 ysiw(
+map <Leader>0 ysiw)
+
+map <Leader>k ysiw{
+map <Leader>l ysiw}
+
+map <Leader>h ysiw'
+map <Leader>j ysiw`b
+
+
+map <Leader><Leader>9 vi(
+map <Leader><Leader>0 vi)
+
+map <Leader><Leader>k vi{
+map <Leader><Leader>l vi}
+
+map <Leader><Leader>h vi'
+map <Leader><Leader>j vi`
+
 " On pressing tab, insert 2 spaces
 set expandtab
 " show existing tab with 2 spaces width
