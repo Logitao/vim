@@ -1,41 +1,54 @@
 set termguicolors
 set ttyfast
 set clipboard+=unnamedplus
+set guicursor=
+set encoding=UTF-8
 call plug#begin('~/.vim/plugged')
 
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
-let g:deoplete#enable_at_startup = 1
-Plug 'Shougo/neosnippet.vim'
-Plug 'Shougo/neosnippet-snippets'
-
+" if has('nvim')
+"   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" else
+"   Plug 'Shougo/deoplete.nvim'
+"   Plug 'roxma/nvim-yarp'
+"   Plug 'roxma/vim-hug-neovim-rpc'
+" endif
+" let g:deoplete#enable_at_startup = 1
+"
+"Plug 'Shougo/neosnippet.vim'
+"Plug 'Shougo/neosnippet-snippets'
+" SURROUND
 Plug 'tpope/vim-surround'
+" NERDTREE
 Plug 'scrooloose/nerdtree'
 " Plug 'othree/yajs.vim'
 Plug 'mxw/vim-jsx'
+" AUTOCOMPLETION
+Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'}
 
-Plug 'jiangmiao/auto-pairs'
-Plug 'kien/ctrlp.vim'
-Plug 'mattn/emmet-vim'
+" Plug 'kien/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
+"Plug 'mattn/emmet-vim'
+
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+
 Plug 'rking/ag.vim'
+
 Plug 'prettier/vim-prettier'
+
 Plug 'slashmili/alchemist.vim'
+
 Plug 'Yggdroot/indentLine'
 Plug 'easymotion/vim-easymotion'
-Plug 'tpope/vim-endwise'
+
+"Plug 'tpope/vim-endwise'
 Plug 'elixir-editors/vim-elixir'
 Plug 'sheerun/vim-polyglot'
-" Track the engine.
-Plug 'SirVer/ultisnips'
-" Snippets are separated from the engine. Add this if you want them:
-Plug 'honza/vim-snippets'
+
+Plug 'scrooloose/nerdcommenter'
+"Plug 'ryanoasis/vim-devicons'
+"Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+
 " COLORS
 Plug 'benburrill/potato-colors'
 Plug 'joshdick/onedark.vim'
@@ -45,6 +58,11 @@ Plug 'ayu-theme/ayu-vim'
 Plug 'morhetz/gruvbox'
 Plug 'axvr/photon.vim'
 Plug 'tjammer/blandon.vim'
+Plug 'lifepillar/vim-solarized8'
+
+" ICONS "
+Plug 'ryanoasis/vim-devicons'
+
 "
 " Plug 'mattn/emmet-vim'
 " Plug 'tmhedberg/matchit'
@@ -63,12 +81,14 @@ Plug 'mhinz/vim-mix-format'
 " Plug 'zchee/deoplete-clang'
 " Plug 'Shougo/neoinclude.vim'
 
-Plug 'ludovicchabant/vim-gutentags'
-Plug 'kristijanhusak/vim-js-file-import', {'do': 'npm install'}
+" Plug 'ludovicchabant/vim-gutentags'
+" Plug 'kristijanhusak/vim-js-file-import', {'do': 'npm install'}
 
-Plug 'Xuyuanp/nerdtree-git-plugin'
+"Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'natebosch/vim-lsc'
 Plug 'othree/javascript-libraries-syntax.vim'
+Plug 'tpope/vim-fugitive' 
+
 call plug#end()
 
 syntax on
@@ -84,55 +104,46 @@ set regexpengine=1
 " colorscheme potato 
 " colorscheme open-color 
 " colorscheme one 
-colorscheme one
-" set background=light
+colorscheme solarized8
+set background=light
 " let g:airline_theme='onedark'
-let g:airline_theme='onedark'
+let g:airline_theme='solarized'
 
 " let g:user_emmet_mode='n'    "only enable normal mode functions.
 
 let mapleader = "\<Space>"
 
+" coc config
+"
+let g:coc_global_extensions = [
+\ 'coc-snippets',
+\ 'coc-pairs',
+\ 'coc-tsserver',
+\ 'coc-eslint',
+\ 'coc-json',
+\ 'coc-rls', 
+\ 'coc-emmet'
+\ ]
 
 set number
+
+"let g:NERDTreeGitStatusWithFlags = 1
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\deps\|deps\|_build\|build'
-let g:lsc_server_commands = {'dart': 'dart_language_server'}
 " let g:deoplete#sources#clang#libclang_path = "/usr/lib/x86_64-linux-gnu/libclang.so"	
 " let g:deoplete#sources#clang#clang_header = "/usr/lib/clang/6.0/include"
 
-map <C-n> :NERDTreeToggle<CR>
+map <C-n> :NERDTreeToggle <CR>
 map <Leader>c :noh<CR>
 map <Leader>b :set cul!<CR>
 map <Leader>q :q<CR>
 map <Leader>s :vs<CR>
 map <Leader>m :MixFormat<CR>
-" Plugin key-mappings.
-" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-imap <C-q>     <Plug>(neosnippet_expand_or_jump)
-smap <C-q>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-q>     <Plug>(neosnippet_expand_target)
-" SuperTab like snippets behavior.
-" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-"imap <expr><TAB>
-" \ pumvisible() ? "\<C-n>" :
-" \ neosnippet#expandable_or_jumpable() ?
-" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-set shortmess-=F
+
+set shortmess+=c
 nnoremap <C-j> :m .+1<CR>==
 nnoremap <C-k> :m .-2<CR>==
 
 let NERDTreeShowHidden=1
-" For conceal markers.
-if has('conceal')
-  set conceallevel=2 concealcursor=niv
-endif
-" Enable snipMate compatibility feature.
-"let g:neosnippet#enable_snipmate_compatibility = 1
-
-" Tell Neosnippet about the other snippets
-let g:neosnippet#snippets_directory='~/.config/nvim/snippets'
 nnoremap <silent> <Right> <c-w>l
 nnoremap <silent> <Left> <c-w>h
 nnoremap <silent> <Up> <c-w>k
@@ -143,6 +154,7 @@ nnoremap <silent> <A-Left> :vertical resize -5 <CR>
 nnoremap <silent> <A-Up> :res -5<CR>
 nnoremap <silent> <A-Down> :res +5<CR>
 
+" surround in 
 map <Leader>9 ysiw(
 map <Leader>0 ysiw)
 
@@ -152,16 +164,43 @@ map <Leader>l ysiw}
 map <Leader>h ysiw'
 map <Leader>j ysiw`b
 
+"visual in
+map <Leader>v9 vi(
+map <Leader>v0 vi)
 
-map <Leader><Leader>9 vi(
-map <Leader><Leader>0 vi)
+map <Leader>vk vi{
+map <Leader>vl vi}
 
-map <Leader><Leader>k vi{
-map <Leader><Leader>l vi}
+map <Leader>vh vi'
+map <Leader>vj vi`
 
-map <Leader><Leader>h vi'
-map <Leader><Leader>j vi`
+"visual at
+map <Leader>vv9 va(
+map <Leader>vv0 va)
 
+map <Leader>vvk va{
+map <Leader>vvl va}
+
+map <Leader>vvh va'
+map <Leader>vvj va`
+
+" visual
+vmap <Leader>9 S(
+vmap <Leader>0 S)
+
+vmap <Leader>k S{
+vmap <Leader>l S}
+
+vmap <Leader>h S'
+vmap <Leader>j S`
+
+autocmd FileType json syntax match Comment +\/\/.\+$+
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
+
+autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 " On pressing tab, insert 2 spaces
 set expandtab
 " show existing tab with 2 spaces width
