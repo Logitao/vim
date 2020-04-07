@@ -1,3 +1,25 @@
 {
-  "suggest.triggerAfterInsertEnter": true
+  "suggest.triggerAfterInsertEnter": true,
+  "emmet.includeLanguages": {
+    "vue-html": "html",
+    "javascript": "javascriptreact"
+  },
+  "languageserver": {
+    "dart": {
+      "command": "dart",
+      "args": [
+        "/usr/local/opt/dart/libexec/bin/snapshots/analysis_server.dart.snapshot",
+        "--lsp"
+      ],
+      "filetypes": ["dart"],
+      "disableDynamicRegister": true,
+      "trace.server": "verbose"
+    },
+    "golang": {
+      "command": "~/go/bin/gopls",
+      "rootPatterns": ["go.mod"],
+      "disableWorkspaceFolders": true,
+      "filetypes": ["go"]
+    }
+  }
 }

@@ -1,8 +1,14 @@
-set termguicolors
 set ttyfast
+set termguicolors
+set ff=unix
+
+hi! link SpecialKey Ignore
 set clipboard+=unnamedplus
 set guicursor=
 set encoding=UTF-8
+set guifont="FuraCode Nerd Font"
+set nu rnu
+
 call plug#begin('~/.vim/plugged')
 
 " if has('nvim')
@@ -27,12 +33,14 @@ Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'}
 
 " Plug 'kien/ctrlp.vim'
 Plug 'ctrlpvim/ctrlp.vim'
-"Plug 'mattn/emmet-vim'
-
+Plug 'mattn/emmet-vim'
+Plug 'josudoey/vim-eslint-fix'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 Plug 'rking/ag.vim'
+" Syntax HTML js html``
+Plug 'jonsmithers/vim-html-template-literals'
 
 Plug 'prettier/vim-prettier'
 
@@ -41,14 +49,16 @@ Plug 'slashmili/alchemist.vim'
 Plug 'Yggdroot/indentLine'
 Plug 'easymotion/vim-easymotion'
 
-"Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-endwise'
 Plug 'elixir-editors/vim-elixir'
 Plug 'sheerun/vim-polyglot'
-
+"TS
+Plug 'Quramy/tsuquyomi'
 Plug 'scrooloose/nerdcommenter'
-"Plug 'ryanoasis/vim-devicons'
-"Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-
+Plug 'ryanoasis/vim-devicons'
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
+" Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 " COLORS
 Plug 'benburrill/potato-colors'
 Plug 'joshdick/onedark.vim'
@@ -99,13 +109,13 @@ set lazyredraw
 set background=dark
 set mouse=a
 set regexpengine=1 
-" colorscheme onedark 
+colorscheme onedark 
 " colorscheme gruvbox 
 " colorscheme potato 
 " colorscheme open-color 
 " colorscheme one 
-colorscheme solarized8
-set background=light
+" colorscheme solarized8
+set background=dark
 " let g:airline_theme='onedark'
 let g:airline_theme='solarized'
 
@@ -119,18 +129,34 @@ let g:coc_global_extensions = [
 \ 'coc-snippets',
 \ 'coc-pairs',
 \ 'coc-tsserver',
-\ 'coc-eslint',
 \ 'coc-json',
 \ 'coc-rls', 
-\ 'coc-emmet'
+\ 'coc-elixir',
+\ 'coc-flutter',
+\ 'coc-snippets',
 \ ]
 
-set number
+let g:polyglot_disabled = ['typescript', 'ts']
 
 "let g:NERDTreeGitStatusWithFlags = 1
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\deps\|deps\|_build\|build'
 " let g:deoplete#sources#clang#libclang_path = "/usr/lib/x86_64-linux-gnu/libclang.so"	
 " let g:deoplete#sources#clang#clang_header = "/usr/lib/clang/6.0/include"
+
+".vimrc
+function! PrettyFile()
+  if &filetype=="javascript" || &filetype=="typescript"
+    if exists('g:loaded_Beautifier')
+      call JsBeautify()
+    endif
+    if exists('g:loaded_ESLintFix')
+      call ESLintFix()
+    endif
+  end
+endfunction
+
+"pretty the file before saving.
+autocmd BufWritePre * execute 'call PrettyFile()'
 
 map <C-n> :NERDTreeToggle <CR>
 map <Leader>c :noh<CR>
@@ -153,6 +179,8 @@ nnoremap <silent> <A-Right> :vertical resize +5<CR>
 nnoremap <silent> <A-Left> :vertical resize -5 <CR>
 nnoremap <silent> <A-Up> :res -5<CR>
 nnoremap <silent> <A-Down> :res +5<CR>
+
+let g:user_emmet_leader_key='<C-q>'
 
 " surround in 
 map <Leader>9 ysiw(
@@ -195,12 +223,8 @@ vmap <Leader>h S'
 vmap <Leader>j S`
 
 autocmd FileType json syntax match Comment +\/\/.\+$+
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
-
-autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+let g:coc_snippet_next = '<tab>'
 " On pressing tab, insert 2 spaces
 set expandtab
 " show existing tab with 2 spaces width
@@ -208,3 +232,4 @@ set tabstop=2
 set softtabstop=2
 " when indenting with '>', use 2 spaces width
 set shiftwidth=2
+set nolist
