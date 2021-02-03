@@ -21,7 +21,7 @@ call plug#begin('~/.vim/plugged')
 " let g:deoplete#enable_at_startup = 1
 "
 "Plug 'Shougo/neosnippet.vim'
-"Plug 'Shougo/neosnippet-snippets'
+Plug 'Shougo/neosnippet-snippets'
 " SURROUND
 Plug 'tpope/vim-surround'
 " NERDTREE
@@ -34,7 +34,7 @@ Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'}
 " Plug 'kien/ctrlp.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mattn/emmet-vim'
-Plug 'josudoey/vim-eslint-fix'
+" Plug 'josudoey/vim-eslint-fix'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
@@ -52,12 +52,14 @@ Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-endwise'
 Plug 'elixir-editors/vim-elixir'
 Plug 'sheerun/vim-polyglot'
+
+Plug 'mlaursen/vim-react-snippets'
 "TS
-Plug 'Quramy/tsuquyomi'
+" Plug 'Quramy/tsuquyomi'
 Plug 'scrooloose/nerdcommenter'
-Plug 'ryanoasis/vim-devicons'
-Plug 'leafgarland/typescript-vim'
-Plug 'peitalin/vim-jsx-typescript'
+" Plug 'ryanoasis/vim-devicons'
+" Plug 'leafgarland/typescript-vim'
+" Plug 'peitalin/vim-jsx-typescript'
 " Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 " COLORS
 Plug 'benburrill/potato-colors'
@@ -71,7 +73,7 @@ Plug 'tjammer/blandon.vim'
 Plug 'lifepillar/vim-solarized8'
 
 " ICONS "
-Plug 'ryanoasis/vim-devicons'
+" Plug 'ryanoasis/vim-devicons'
 
 "
 " Plug 'mattn/emmet-vim'
@@ -106,18 +108,11 @@ syntax on
 set updatetime=50
 set cursorline!
 set lazyredraw
-set background=dark
 set mouse=a
-set regexpengine=1 
-colorscheme onedark 
-" colorscheme gruvbox 
-" colorscheme potato 
-" colorscheme open-color 
-" colorscheme one 
-" colorscheme solarized8
+colorscheme gruvbox 
 set background=dark
 " let g:airline_theme='onedark'
-let g:airline_theme='solarized'
+let g:airline_theme='gruvbox'
 
 " let g:user_emmet_mode='n'    "only enable normal mode functions.
 
@@ -133,30 +128,12 @@ let g:coc_global_extensions = [
 \ 'coc-rls', 
 \ 'coc-elixir',
 \ 'coc-flutter',
-\ 'coc-snippets',
 \ ]
-
-let g:polyglot_disabled = ['typescript', 'ts']
 
 "let g:NERDTreeGitStatusWithFlags = 1
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\deps\|deps\|_build\|build'
 " let g:deoplete#sources#clang#libclang_path = "/usr/lib/x86_64-linux-gnu/libclang.so"	
 " let g:deoplete#sources#clang#clang_header = "/usr/lib/clang/6.0/include"
-
-".vimrc
-function! PrettyFile()
-  if &filetype=="javascript" || &filetype=="typescript"
-    if exists('g:loaded_Beautifier')
-      call JsBeautify()
-    endif
-    if exists('g:loaded_ESLintFix')
-      call ESLintFix()
-    endif
-  end
-endfunction
-
-"pretty the file before saving.
-autocmd BufWritePre * execute 'call PrettyFile()'
 
 map <C-n> :NERDTreeToggle <CR>
 map <Leader>c :noh<CR>
@@ -233,3 +210,21 @@ set softtabstop=2
 " when indenting with '>', use 2 spaces width
 set shiftwidth=2
 set nolist
+
+" Use <C-l> for trigger snippet expand.
+imap <C-l> <Plug>(coc-snippets-expand)
+
+" Use <C-j> for select text for visual placeholder of snippet.
+vmap <C-j> <Plug>(coc-snippets-select)
+
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<c-j>'
+
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<c-k>'
+
+" Use <C-j> for both expand and jump (make expand higher priority.)
+imap <C-j> <Plug>(coc-snippets-expand-jump)
+
+" Use <leader>x for convert visual selected code to snippet
+xmap <leader>x  <Plug>(coc-convert-snippet)

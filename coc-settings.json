@@ -11,5 +11,8 @@
         }
       }
     }
-  }
+  },
+  "coc.preferences.formatOnSaveFiletypes": [
+    "dart"
+  ]
 }
