@@ -1,5 +1,7 @@
 {
-  "suggest.triggerAfterInsertEnter": true,
+  "codeLens.enable": true,
+  "eslint.autoFixOnSave": true,
+  "eslint.alwaysShowStatus": true,
   "languageserver": {
     "ccls": {
       "command": "ccls",
@@ -10,9 +12,30 @@
           "directory": "/tmp/ccls"
         }
       }
+    },
+    "elmLS": {
+      "command": "elm-language-server",
+      "filetypes": ["elm"],
+      "rootPatterns": ["elm.json"]
+    },
+    "rescript": {
+      "enable": true,
+      "module": "~/.vim/plugged/vim-rescript/server/out/server.js",
+      "args": ["--node-ipc"],
+      "filetypes": ["rescript", "resx", "res"],
+      "rootPatterns": ["bsconfig.json"]
     }
   },
+  "suggest.triggerAfterInsertEnter": true,
   "coc.preferences.formatOnSaveFiletypes": [
-    "dart"
-  ]
+    "dart",
+    "rust",
+    "elm",
+    "elixir",
+    "python3",
+    "resx",
+    "res"
+  ],
+  "rust-analyzer.server.path": "/home/logit/.local/bin/rust-analyzer",
+  "rust-analyzer.cargo.allFeatures": true
 }

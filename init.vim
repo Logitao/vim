@@ -6,7 +6,7 @@ hi! link SpecialKey Ignore
 set clipboard+=unnamedplus
 set guicursor=
 set encoding=UTF-8
-set guifont="FuraCode Nerd Font"
+set guifont="Fira Code"
 set nu rnu
 
 call plug#begin('~/.vim/plugged')
@@ -21,7 +21,10 @@ call plug#begin('~/.vim/plugged')
 " let g:deoplete#enable_at_startup = 1
 "
 "Plug 'Shougo/neosnippet.vim'
+Plug 'justinmk/vim-sneak'
 Plug 'Shougo/neosnippet-snippets'
+Plug 'gko/vim-coloresque'
+Plug 'honza/vim-snippets'
 " SURROUND
 Plug 'tpope/vim-surround'
 " NERDTREE
@@ -30,11 +33,12 @@ Plug 'scrooloose/nerdtree'
 Plug 'mxw/vim-jsx'
 " AUTOCOMPLETION
 Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'}
-
+Plug 'tpope/vim-repeat'
 " Plug 'kien/ctrlp.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mattn/emmet-vim'
 " Plug 'josudoey/vim-eslint-fix'
+" Plug 'eslint/eslint'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
@@ -48,7 +52,6 @@ Plug 'slashmili/alchemist.vim'
 
 Plug 'Yggdroot/indentLine'
 Plug 'easymotion/vim-easymotion'
-
 Plug 'tpope/vim-endwise'
 Plug 'elixir-editors/vim-elixir'
 Plug 'sheerun/vim-polyglot'
@@ -62,15 +65,17 @@ Plug 'scrooloose/nerdcommenter'
 " Plug 'peitalin/vim-jsx-typescript'
 " Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 " COLORS
-Plug 'benburrill/potato-colors'
-Plug 'joshdick/onedark.vim'
-Plug 'yous/vim-open-color'
-Plug 'rakr/vim-one'
-Plug 'ayu-theme/ayu-vim'
-Plug 'morhetz/gruvbox'
-Plug 'axvr/photon.vim'
-Plug 'tjammer/blandon.vim'
-Plug 'lifepillar/vim-solarized8'
+Plug 'arcticicestudio/nord-vim'
+" Plug 'wadackel/vim-dogrun'
+" Plug 'benburrill/potato-colors'
+" Plug 'joshdick/onedark.vim'
+" Plug 'yous/vim-open-color'
+" Plug 'rakr/vim-one'
+" Plug 'ayu-theme/ayu-vim'
+" Plug 'morhetz/gruvbox'
+" Plug 'axvr/photon.vim'
+" Plug 'tjammer/blandon.vim'
+" Plug 'lifepillar/vim-solarized8'
 
 " ICONS "
 " Plug 'ryanoasis/vim-devicons'
@@ -82,25 +87,19 @@ Plug 'lifepillar/vim-solarized8'
 Plug 'airblade/vim-gitgutter'
 Plug 'jeetsukumaran/vim-buffergator'
 
-Plug 'Galooshi/vim-import-js'
 Plug 'burner/vim-svelte'
 " ELIXIR
 Plug 'andyl/vim-textobj-elixir'
 Plug 'kana/vim-textobj-user'
 Plug 'mhinz/vim-mix-format'
 
-" C (lang)
-" Plug 'zchee/deoplete-clang'
-" Plug 'Shougo/neoinclude.vim'
-
-" Plug 'ludovicchabant/vim-gutentags'
-" Plug 'kristijanhusak/vim-js-file-import', {'do': 'npm install'}
-
 "Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'natebosch/vim-lsc'
 Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'tpope/vim-fugitive' 
 
+Plug 'terryma/vim-expand-region'
+Plug 'rescript-lang/vim-rescript'
 call plug#end()
 
 syntax on
@@ -109,10 +108,9 @@ set updatetime=50
 set cursorline!
 set lazyredraw
 set mouse=a
-colorscheme gruvbox 
-set background=dark
+colorscheme nord 
+let g:airline_theme='nord'
 " let g:airline_theme='onedark'
-let g:airline_theme='gruvbox'
 
 " let g:user_emmet_mode='n'    "only enable normal mode functions.
 
@@ -125,13 +123,12 @@ let g:coc_global_extensions = [
 \ 'coc-pairs',
 \ 'coc-tsserver',
 \ 'coc-json',
-\ 'coc-rls', 
 \ 'coc-elixir',
 \ 'coc-flutter',
 \ ]
 
 "let g:NERDTreeGitStatusWithFlags = 1
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\deps\|deps\|_build\|build'
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\deps\|deps\|_build\|build\|target'
 " let g:deoplete#sources#clang#libclang_path = "/usr/lib/x86_64-linux-gnu/libclang.so"	
 " let g:deoplete#sources#clang#clang_header = "/usr/lib/clang/6.0/include"
 
@@ -147,6 +144,7 @@ nnoremap <C-j> :m .+1<CR>==
 nnoremap <C-k> :m .-2<CR>==
 
 let NERDTreeShowHidden=1
+
 nnoremap <silent> <Right> <c-w>l
 nnoremap <silent> <Left> <c-w>h
 nnoremap <silent> <Up> <c-w>k
@@ -202,6 +200,7 @@ vmap <Leader>j S`
 autocmd FileType json syntax match Comment +\/\/.\+$+
 
 let g:coc_snippet_next = '<tab>'
+let g:sneak#label = 1
 " On pressing tab, insert 2 spaces
 set expandtab
 " show existing tab with 2 spaces width
@@ -228,3 +227,27 @@ imap <C-j> <Plug>(coc-snippets-expand-jump)
 
 " Use <leader>x for convert visual selected code to snippet
 xmap <leader>x  <Plug>(coc-convert-snippet)
+nmap <leader>rn <Plug>(coc-rename)
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gy <Plug>(coc-type-definition)
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>ac  <Plug>(coc-codeaction)
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
+endfunction
+
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+endif
+
