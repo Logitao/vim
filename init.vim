@@ -6,69 +6,59 @@ hi! link SpecialKey Ignore
 set clipboard+=unnamedplus
 set guicursor=
 set encoding=UTF-8
-set guifont="Fira Code"
 set nu rnu
-
 call plug#begin('~/.vim/plugged')
 
-" if has('nvim')
-"   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" else
-"   Plug 'Shougo/deoplete.nvim'
-"   Plug 'roxma/nvim-yarp'
-"   Plug 'roxma/vim-hug-neovim-rpc'
-" endif
-" let g:deoplete#enable_at_startup = 1
-"
-"Plug 'Shougo/neosnippet.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 Plug 'justinmk/vim-sneak'
-Plug 'Shougo/neosnippet-snippets'
 Plug 'gko/vim-coloresque'
-Plug 'honza/vim-snippets'
 " SURROUND
 Plug 'tpope/vim-surround'
 " NERDTREE
-Plug 'scrooloose/nerdtree'
+" Plug 'scrooloose/nerdtree'
 " Plug 'othree/yajs.vim'
-Plug 'mxw/vim-jsx'
+" Plug 'mxw/vim-jsx'
 " AUTOCOMPLETION
 Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'}
+
 Plug 'tpope/vim-repeat'
 " Plug 'kien/ctrlp.vim'
-Plug 'ctrlpvim/ctrlp.vim'
+" Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mattn/emmet-vim'
 " Plug 'josudoey/vim-eslint-fix'
 " Plug 'eslint/eslint'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
-Plug 'rking/ag.vim'
 " Syntax HTML js html``
-Plug 'jonsmithers/vim-html-template-literals'
-
+" Plug 'jonsmithers/vim-html-template-literals'
 Plug 'prettier/vim-prettier'
 
 Plug 'slashmili/alchemist.vim'
 
+
+" Vertical identlines
 Plug 'Yggdroot/indentLine'
-Plug 'easymotion/vim-easymotion'
+
+" end complete for ruby/elixir
 Plug 'tpope/vim-endwise'
-Plug 'elixir-editors/vim-elixir'
+
 Plug 'sheerun/vim-polyglot'
 
-Plug 'mlaursen/vim-react-snippets'
+" Plug 'mlaursen/vim-react-snippets'
 "TS
 " Plug 'Quramy/tsuquyomi'
-Plug 'scrooloose/nerdcommenter'
+" Plug 'scrooloose/nerdcommenter'
 " Plug 'ryanoasis/vim-devicons'
 " Plug 'leafgarland/typescript-vim'
 " Plug 'peitalin/vim-jsx-typescript'
 " Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 " COLORS
-Plug 'arcticicestudio/nord-vim'
+" Plug 'arcticicestudio/nord-vim'
 " Plug 'wadackel/vim-dogrun'
 " Plug 'benburrill/potato-colors'
-" Plug 'joshdick/onedark.vim'
+Plug 'joshdick/onedark.vim'
 " Plug 'yous/vim-open-color'
 " Plug 'rakr/vim-one'
 " Plug 'ayu-theme/ayu-vim'
@@ -85,32 +75,28 @@ Plug 'arcticicestudio/nord-vim'
 " Plug 'tmhedberg/matchit'
 
 Plug 'airblade/vim-gitgutter'
-Plug 'jeetsukumaran/vim-buffergator'
-
-Plug 'burner/vim-svelte'
-" ELIXIR
-Plug 'andyl/vim-textobj-elixir'
-Plug 'kana/vim-textobj-user'
-Plug 'mhinz/vim-mix-format'
 
 "Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'natebosch/vim-lsc'
-Plug 'othree/javascript-libraries-syntax.vim'
+" Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'tpope/vim-fugitive' 
 
+" CTRL +
 Plug 'terryma/vim-expand-region'
-Plug 'rescript-lang/vim-rescript'
 call plug#end()
 
 syntax on
 
+packadd! dracula_pro
+let g:dracula_colorterm = 1
+
+" colorscheme dracula_pro
 set updatetime=50
 set cursorline!
 set lazyredraw
 set mouse=a
-colorscheme nord 
-let g:airline_theme='nord'
-" let g:airline_theme='onedark'
+" let g:airline_theme='dracula'
+colorscheme onedark 
+let g:airline_theme='onedark'
 
 " let g:user_emmet_mode='n'    "only enable normal mode functions.
 
@@ -132,23 +118,18 @@ let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\deps\|deps\|_build\|bui
 " let g:deoplete#sources#clang#libclang_path = "/usr/lib/x86_64-linux-gnu/libclang.so"	
 " let g:deoplete#sources#clang#clang_header = "/usr/lib/clang/6.0/include"
 
-map <C-n> :NERDTreeToggle <CR>
+" map <C-n> :NERDTreeToggle <CR>
+map <C-p> :GFiles <CR>
 map <Leader>c :noh<CR>
-map <Leader>b :set cul!<CR>
-map <Leader>q :q<CR>
 map <Leader>s :vs<CR>
-map <Leader>m :MixFormat<CR>
+map <Leader>d :sp<CR>
+
+nnoremap H ^
+nnoremap L $
 
 set shortmess+=c
 nnoremap <C-j> :m .+1<CR>==
 nnoremap <C-k> :m .-2<CR>==
-
-let NERDTreeShowHidden=1
-
-nnoremap <silent> <Right> <c-w>l
-nnoremap <silent> <Left> <c-w>h
-nnoremap <silent> <Up> <c-w>k
-nnoremap <silent> <Down> <c-w>j
 
 nnoremap <silent> <A-Right> :vertical resize +5<CR> 
 nnoremap <silent> <A-Left> :vertical resize -5 <CR>
@@ -162,8 +143,8 @@ map <Leader>9 ysiw(
 map <Leader>0 ysiw)
 
 map <Leader>k ysiw{
-map <Leader>l ysiw}
 
+map <Leader>l ysiw}
 map <Leader>h ysiw'
 map <Leader>j ysiw`b
 
@@ -237,6 +218,7 @@ xmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>ac  <Plug>(coc-codeaction)
 nnoremap <silent> K :call <SID>show_documentation()<CR>
+
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')

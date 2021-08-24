@@ -1,0 +1,95 @@
+# A valid snippet should starts with:
+#
+#		snippet trigger_word [ "description" [ options ] ]
+#
+# and end with:
+#
+#		endsnippet
+#
+# Snippet options:
+#
+#		b - Beginning of line.
+#		i - In-word expansion.
+#		w - Word boundary.
+#		r - Regular expression
+#		e - Custom context snippet
+#		A - Snippet will be triggered automatically, when condition matches.
+#
+# Basic example:
+#
+#		snippet emitter "emitter properties" b
+#		private readonly ${1} = new Emitter<$2>()
+#		public readonly ${1/^_(.*)/$1/}: Event<$2> = this.$1.event
+#		endsnippet
+#
+# Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
+
+snippet cp
+import React from 'react';
+
+interface ${1}Props {
+  ${2}
+}
+
+const ${1:Component} = ({}: ${1}Props) => {
+  return (
+    ${0:null}
+  )
+}
+
+export default ${1:Component}
+
+
+snippet state
+const [${1:state}, set${1/(.*)/${1:/capitalize}/}] = React.useState(${2});
+
+snippet effect
+React.useEffect(() => {
+  ${0}
+}, []);
+
+snippet effectr
+React.useEffect(() => {
+  ${0}
+  return () => ${1}
+}, []);
+
+snippet effect0r
+React.useEffect(() => {
+  ${0}
+  return () => ${1}
+});
+
+snippet effect0
+React.useEffect(() => {
+  ${0}
+});
+
+snippet context
+const value = React.useContext<${1}ContextProps>(${1}Context);
+
+
+snippet cpcontext
+import React from 'react';
+
+export interface ${1}ContextProps {
+  ${2}
+}
+const ${1}Context = React.createContext({} as ${1}ContextProps);
+
+
+export interface ${1}ProviderProps {
+  children: React.ReactNode;
+}
+
+export const ${1}Provider = ({children}: ${1}ProviderProps) => {
+  const value = React.useMemo(() => {
+    return {};
+  }, []);
+
+  return (
+    <${1}Context.Provider value={value}>
+      {children}
+    </${1}Context.Provider>
+  );
+}

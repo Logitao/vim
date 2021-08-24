@@ -24,6 +24,12 @@
       "args": ["--node-ipc"],
       "filetypes": ["rescript", "resx", "res"],
       "rootPatterns": ["bsconfig.json"]
+
+    },
+    "ocaml": {
+      "command": "ocaml-language-server",
+      "args": ["--stdio"],
+      "filetypes": ["ocaml", "reason"]
     }
   },
   "suggest.triggerAfterInsertEnter": true,
@@ -37,5 +43,11 @@
     "res"
   ],
   "rust-analyzer.server.path": "/home/logit/.local/bin/rust-analyzer",
-  "rust-analyzer.cargo.allFeatures": true
+  "rust-analyzer.cargo.allFeatures": true,
+  "snippets.userSnippetsDirectory": "~/.config/nvim/snippets",
+  "snippets.extends": {
+    "cpp": ["c"],
+    "javascriptreact": ["javascript"],
+    "typescript": ["javascript"]
+  }
 }
