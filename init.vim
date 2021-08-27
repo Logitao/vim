@@ -7,12 +7,23 @@ set clipboard+=unnamedplus
 set guicursor=
 set encoding=UTF-8
 set nu rnu
+
+" Hidden buffers
+set hidden
+
+" Hide the default vim mode
+set noshowmode
+
+nnoremap <C-h> :bprev<CR>
+nnoremap <C-l> :bnext<CR>
+
 call plug#begin('~/.vim/plugged')
 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'justinmk/vim-sneak'
-Plug 'gko/vim-coloresque'
+" Plug 'gko/vim-coloresque'
+Plug 'ap/vim-buftabline'
 " SURROUND
 Plug 'tpope/vim-surround'
 " NERDTREE
@@ -28,15 +39,15 @@ Plug 'tpope/vim-repeat'
 Plug 'mattn/emmet-vim'
 " Plug 'josudoey/vim-eslint-fix'
 " Plug 'eslint/eslint'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+" AIRLINE
+" Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline-themes'
 
 " Syntax HTML js html``
 " Plug 'jonsmithers/vim-html-template-literals'
 Plug 'prettier/vim-prettier'
 
 Plug 'slashmili/alchemist.vim'
-
 
 " Vertical identlines
 Plug 'Yggdroot/indentLine'
@@ -48,17 +59,12 @@ Plug 'sheerun/vim-polyglot'
 
 " Plug 'mlaursen/vim-react-snippets'
 "TS
-" Plug 'Quramy/tsuquyomi'
-" Plug 'scrooloose/nerdcommenter'
-" Plug 'ryanoasis/vim-devicons'
-" Plug 'leafgarland/typescript-vim'
-" Plug 'peitalin/vim-jsx-typescript'
-" Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 " COLORS
 " Plug 'arcticicestudio/nord-vim'
 " Plug 'wadackel/vim-dogrun'
 " Plug 'benburrill/potato-colors'
-Plug 'joshdick/onedark.vim'
+" Plug 'joshdick/onedark.vim'
+Plug 'itchyny/lightline.vim'
 " Plug 'yous/vim-open-color'
 " Plug 'rakr/vim-one'
 " Plug 'ayu-theme/ayu-vim'
@@ -66,6 +72,8 @@ Plug 'joshdick/onedark.vim'
 " Plug 'axvr/photon.vim'
 " Plug 'tjammer/blandon.vim'
 " Plug 'lifepillar/vim-solarized8'
+
+Plug 'sonph/onehalf', { 'rtp': 'vim' }
 
 " ICONS "
 " Plug 'ryanoasis/vim-devicons'
@@ -86,17 +94,16 @@ call plug#end()
 
 syntax on
 
-packadd! dracula_pro
-let g:dracula_colorterm = 1
-
 " colorscheme dracula_pro
+colorscheme onehalfdark
+
+let g:lightline = { 'colorscheme': 'onehalfdark' }
+
 set updatetime=50
 set cursorline!
 set lazyredraw
 set mouse=a
 " let g:airline_theme='dracula'
-colorscheme onedark 
-let g:airline_theme='onedark'
 
 " let g:user_emmet_mode='n'    "only enable normal mode functions.
 
@@ -113,19 +120,14 @@ let g:coc_global_extensions = [
 \ 'coc-flutter',
 \ ]
 
-"let g:NERDTreeGitStatusWithFlags = 1
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\deps\|deps\|_build\|build\|target'
-" let g:deoplete#sources#clang#libclang_path = "/usr/lib/x86_64-linux-gnu/libclang.so"	
-" let g:deoplete#sources#clang#clang_header = "/usr/lib/clang/6.0/include"
-
 " map <C-n> :NERDTreeToggle <CR>
 map <C-p> :GFiles <CR>
 map <Leader>c :noh<CR>
 map <Leader>s :vs<CR>
 map <Leader>d :sp<CR>
 
-nnoremap H ^
-nnoremap L $
+noremap H ^
+noremap L $
 
 set shortmess+=c
 nnoremap <C-j> :m .+1<CR>==
@@ -139,44 +141,7 @@ nnoremap <silent> <A-Down> :res +5<CR>
 let g:user_emmet_leader_key='<C-q>'
 
 " surround in 
-map <Leader>9 ysiw(
-map <Leader>0 ysiw)
-
-map <Leader>k ysiw{
-
-map <Leader>l ysiw}
-map <Leader>h ysiw'
-map <Leader>j ysiw`b
-
-"visual in
-map <Leader>v9 vi(
-map <Leader>v0 vi)
-
-map <Leader>vk vi{
-map <Leader>vl vi}
-
-map <Leader>vh vi'
-map <Leader>vj vi`
-
-"visual at
-map <Leader>vv9 va(
-map <Leader>vv0 va)
-
-map <Leader>vvk va{
-map <Leader>vvl va}
-
-map <Leader>vvh va'
-map <Leader>vvj va`
-
-" visual
-vmap <Leader>9 S(
-vmap <Leader>0 S)
-
-vmap <Leader>k S{
-vmap <Leader>l S}
-
-vmap <Leader>h S'
-vmap <Leader>j S`
+nnoremap gt vit<Esc>
 
 autocmd FileType json syntax match Comment +\/\/.\+$+
 
@@ -202,6 +167,7 @@ let g:coc_snippet_next = '<c-j>'
 
 " Use <C-k> for jump to previous placeholder, it's default of coc.nvim
 let g:coc_snippet_prev = '<c-k>'
+let g:airline#extensions#tabline#enabled = 1
 
 " Use <C-j> for both expand and jump (make expand higher priority.)
 imap <C-j> <Plug>(coc-snippets-expand-jump)
