@@ -1,5 +1,5 @@
 {
-  "codeLens.enable": true,
+  "codeLens.enable": false,
   "eslint.autoFixOnSave": true,
   "eslint.alwaysShowStatus": true,
   "languageserver": {
@@ -42,7 +42,6 @@
     "resx",
     "res"
   ],
-  "rust-analyzer.server.path": "/home/logit/.local/bin/rust-analyzer",
   "rust-analyzer.cargo.allFeatures": true,
   "snippets.userSnippetsDirectory": "~/.config/nvim/snippets",
   "snippets.extends": {
